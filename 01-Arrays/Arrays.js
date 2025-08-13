@@ -117,7 +117,9 @@ let nested = [1, [2, [3, 4]]];
 let flat = nested.flat(2);
 console.log(flat); // Output: [1, 2, 3, 4]
 // Array.prototype.flatMap()
-let flatMapped = myArray1.flatMap(x => [x, x * 2]);
+let myArrayFlatMapped = myArray1.flatMap(x => [x, x * 2]);
+console.log(myArrayFlatMapped);
 
 let myArray2 = myArray1.concat([11, 12, 13, 14, 15]);
 console.log(flatMapped); // Output: [0, 0, 2, 2, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20]
+
