@@ -39,3 +39,7 @@ export const browserHistory = new DoublyLinkedList();
 browserHistory.insert("google.com");
 browserHistory.insert("youtube.com");
 browserHistory.insert("github.com");
+browserHistory.insert("stackoverflow.com");
+browserHistory.insert("linkedin.com");
+browserHistory.insert("twitter.com");
+browserHistory.insert("facebook.com");  
