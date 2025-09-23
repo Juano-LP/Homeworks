@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { songsList } from './LinkedList';
+import { songsList } from './ListaMusica';
 
 export default function LinkedListPage() {
     const [songs, setSongs] = useState(songsList.traverse());

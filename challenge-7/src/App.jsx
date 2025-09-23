@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
-import LinkedListPage from "./LinkedListPage";
-import DoublyLinkedListPage from "./DoublyLinkedListPage";
+import LinkedListPage from "./PaginaMusica";
+import DoublyLinkedListPage from "./PaginaHistorial";
 import "./App.css";
 function App() {
   return (

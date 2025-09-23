@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { browserHistory} from "./DoublyLinkedList";
+import { browserHistory} from "./Historial";
 
 export default function DoublyLinkedListPage() {
     const [current, setCurrent] = useState(browserHistory.current.value);
