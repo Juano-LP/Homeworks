@@ -22,18 +22,13 @@ function App() {
     setBooks(stack.getAll());
   };
 
-  const handleRemoveBook = () => {
-    stack.pop();
-    setBooks(stack.getAll());
-  };
+  
 
   return (
     <div className="app">
       <h1> Books Stack</h1>
       <BookForm onAddBook={handleAddBook} />
-      <button onClick={handleRemoveBook} disabled={stack.isEmpty()}>
-        Remove Last Book
-      </button>
+      
       <BookList books={books} count={stack.size()} />
     </div>
   );
