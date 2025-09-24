@@ -1,21 +1,69 @@
-import React, { useRef, useState } from "react";
-import DoublyLinkedList from "./Historial";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import DoublyLinkedList from "./Historial"; // tu clase export default
 
 export default function PaginaHistorial() {
   const history = useRef(new DoublyLinkedList()).current;
 
-  // Cargar solo una vez
+  // cargar nodos (solo si no existen)
   if (!history.head) {
-    history.append("google.com");
-    history.append("youtube.com");
-    history.append("github.com");
-    history.append("twitter.com");
+    history.append("google");
+    history.append("youtube");
+    history.append("github");
+    history.append("twitter");
   }
 
-  const [currentPage, setCurrentPage] = useState(history.getCurrent());
+  const navigate = useNavigate();
+  const params = useParams();           // leer /history/:page
+  const location = useLocation();
 
-  const handleBack = () => setCurrentPage(history.back());
-  const handleForward = () => setCurrentPage(history.forward());
+  // Estado local para la página actual (string)
+  const [currentPage, setCurrentPage] = useState(() => {
+    // inicial: si hay param en la url, úsalo; si no, usa head
+    return params.page ?? history.getCurrent() ?? history.head?.value ?? null;
+  });
+
+  // Si la URL tiene un parámetro (p. ej. /history/github), posicionamos la lista en ese nodo.
+  useEffect(() => {
+    const pageFromUrl = params.page;
+    if (!pageFromUrl) return;
+
+    let node = history.head;
+    while (node) {
+      if (node.value === pageFromUrl) {
+        history.current = node;
+        setCurrentPage(node.value);
+        return;
+      }
+      node = node.next;
+    }
+
+    // si el page param no existe en la lista -> redirigir a /history (o a head)
+    navigate("/history", { replace: true });
+  }, [params.page, history, navigate]);
+
+  // Cuando `currentPage` cambia (por botones), actualizamos la URL
+  useEffect(() => {
+    if (!currentPage) return;
+
+    const desiredPath = `/history/${currentPage}`;
+    // Evitar navegar si ya estamos en la ruta correcta (evita bucles)
+    if (!location.pathname.endsWith(`/${currentPage}`)) {
+      navigate(desiredPath, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]); // intentionally only depend on currentPage
+
+  // Handlers para los botones
+  const handleBack = () => {
+    const val = history.back();
+    if (val) setCurrentPage(val);
+  };
+
+  const handleForward = () => {
+    const val = history.forward();
+    if (val) setCurrentPage(val);
+  };
 
   return (
     <div className="p-6">

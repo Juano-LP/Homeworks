@@ -2,6 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import LinkedListPage from "./PaginaMusica";
 import DoublyLinkedListPage from "./PaginaHistorial";
 import "./App.css";
+
 function App() {
   return (
     <div className="p-6">
@@ -12,10 +13,12 @@ function App() {
       <Routes>
         <Route path="/linked" element={<LinkedListPage />} />
         <Route path="/history" element={<DoublyLinkedListPage />} />
+        <Route path="/history/:page" element={<DoublyLinkedListPage />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
 
