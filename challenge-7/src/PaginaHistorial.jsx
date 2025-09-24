@@ -1,65 +1,34 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
 import DoublyLinkedList from "./Historial";
 
-const BrowserHistory = () => {
-  const { page } = useParams();
-  const navigate = useNavigate();
+export default function PaginaHistorial() {
+  const history = useRef(new DoublyLinkedList()).current;
 
-  const history = useMemo(() => {
-    const list = new DoublyLinkedList();
-    list.append("inicio");
-    list.append("pagina1");
-    list.append("pagina2");
-    list.append("pagina3");
-    return list;
-  }, []);
+  // Cargar solo una vez
+  if (!history.head) {
+    history.append("google.com");
+    history.append("youtube.com");
+    history.append("github.com");
+    history.append("twitter.com");
+  }
 
-  const [current, setCurrent] = useState("");
+  const [currentPage, setCurrentPage] = useState(history.getCurrent());
 
-  useEffect(() => {
-    if (!page) {
-      navigate("/history/inicio", { replace: true });
-      return;
-    }
-
-    let temp = history.head;
-    while (temp) {
-      if (temp.value === page) {
-        history.current = temp;
-        setCurrent(temp.value);
-        return;
-      }
-      temp = temp.next;
-    }
-
-    navigate("/history/inicio", { replace: true });
-  }, [page, navigate, history]);
-
-  const handleForward = () => {
-    const nextPage = history.forward();
-    if (nextPage) navigate(`/history/${nextPage}`);
-  };
-
-  const handleBack = () => {
-    const prevPage = history.back();
-    if (prevPage) navigate(`/history/${prevPage}`);
-  };
+  const handleBack = () => setCurrentPage(history.back());
+  const handleForward = () => setCurrentPage(history.forward());
 
   return (
-    <div>
-      <h2>Historial de Navegación</h2>
-      <p>Estás en: {current}</p>
-      <div>
-        <button onClick={handleBack} disabled={!history.current?.prev}>
-          ⬅ Atrás
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">🌐 Historial Navegador</h1>
+      <p className="mb-4">Página actual: <b>{currentPage}</b></p>
+      <div className="flex gap-4">
+        <button onClick={handleBack} className="px-4 py-2 bg-gray-400 text-white rounded">
+          Atrás
         </button>
-        <button onClick={handleForward} disabled={!history.current?.next}>
-          ➡ Adelante
+        <button onClick={handleForward} className="px-4 py-2 bg-gray-700 text-white rounded">
+          Adelante
         </button>
       </div>
     </div>
   );
-};
-
-export default BrowserHistory;
+}

@@ -7,11 +7,11 @@ function App() {
     <div className="p-6">
       <nav className="flex gap-4 mb-6">
         <Link to="/linked">Lista Simple</Link>
-        <Link to="/doubly">Lista Doble</Link>
+        <Link to="/history">Lista Doble</Link>
       </nav>
       <Routes>
         <Route path="/linked" element={<LinkedListPage />} />
-        <Route path="/doubly" element={<DoublyLinkedListPage />} />
+        <Route path="/history" element={<DoublyLinkedListPage />} />
       </Routes>
     </div>
   );
