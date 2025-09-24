@@ -4,6 +4,10 @@ function ATMEntry({ onAddPerson }) {
   const [queue, setQueue] = useState({
     name: "",
     withdrawal: "",
+    Day: "",
+    Month: "",
+    Year: "",
+    
   });
 
   const handleChange = (e) => {
@@ -11,13 +15,29 @@ function ATMEntry({ onAddPerson }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onAddPerson(queue);
-    setQueue({
-      name: "",
-      withdrawal: "",
-    });
+  e.preventDefault();
+
+
+  const date = new Date(queue.Year, queue.Month - 1, queue.Day); 
+  
+
+  const personWithDate = {
+    name: queue.name,
+    withdrawal: Number(queue.withdrawal),
+    date: date.toISOString(), 
   };
+
+  onAddPerson(personWithDate);
+
+  // Reset inputs
+  setQueue({
+    name: "",
+    withdrawal: "",
+    Day: "",
+    Month: "",
+    Year: "",
+  });
+};
 
   return (
     <form onSubmit={handleSubmit} className="book-form">
@@ -28,15 +48,39 @@ function ATMEntry({ onAddPerson }) {
         value={queue.name}
         onChange={handleChange}
         required
-      />
-      <input
+        />
+        <input
         type="number"
         name="withdrawal"
         placeholder="Withdrawal Amount"
         value={queue.withdrawal}
         onChange={handleChange}
         required
-      />
+        />
+        <input
+        type="number"
+        name="Day"
+        placeholder="Day"
+        value={queue.Day}
+        onChange={handleChange}
+        required
+        />
+        <input
+        type="number"
+        name="Month"
+        placeholder="Month"
+        value={queue.Month}
+        onChange={handleChange}
+        required
+        />
+        <input
+        type="number"
+        name="Year"
+        placeholder="Year"
+        value={queue.Year}
+        onChange={handleChange}
+        required
+        />
       <button type="submit">Enter the Queue</button>
     </form>
   );

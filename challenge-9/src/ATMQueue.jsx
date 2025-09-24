@@ -7,7 +7,7 @@ function ATMQueue({ people, count }) {
       <ul>
         {people.map((person, index) => (
           <li key={index}>
-            <b>{person.name}</b> | Withdrawal Amount: {person.withdrawal}
+            <b>{person.name}</b> | Withdrawal Amount: {person.withdrawal} | Date: {new Date(person.date).toLocaleDateString()}
           </li>
         ))}
       </ul>
