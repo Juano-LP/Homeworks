@@ -31,7 +31,7 @@ export default function DMQueuePanel() {
             <small>{new Date(msg.createdAt).toLocaleString()}</small>
             <br />
             <button onClick={() => dispatch(dequeueMessage())}>
-              Enviar (simulado)
+              Enviar 
             </button>
           </div>
         ))

@@ -1,27 +1,39 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  stack: []
+  stack: [],
 };
 
 const notificationsSlice = createSlice({
   name: "notifications",
   initialState,
   reducers: {
-    setNotifications(state, action) {
-      state.stack = action.payload;
+    addNotification: (state, action) => {
+      state.stack.push({
+        id: Date.now(),
+        message: action.payload.message,
+        createdAt: action.payload.createdAt || Date.now(),
+      });
     },
-    pushNotification(state, action) {
-      state.stack.push(action.payload);
-    },
-    popNotification(state) {
+    popNotification: (state) => {
       state.stack.pop();
     },
-    clearNotifications(state) {
+    clearNotifications: (state) => {
       state.stack = [];
-    }
-  }
+    },
+    setNotifications: (state, action) => {
+      state.stack = action.payload;
+    },
+  },
 });
 
-export const { setNotifications, pushNotification, popNotification, clearNotifications } = notificationsSlice.actions;
+export const {
+  addNotification,
+  popNotification,
+  clearNotifications,
+  setNotifications,
+} = notificationsSlice.actions;
+
 export default notificationsSlice.reducer;
+

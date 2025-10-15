@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../store/slices/postsSlice";
+import { addNotification } from "../store/slices/notificationsSlice";
 
 export default function NewPost() {
   const [content, setContent] = useState("");
@@ -18,6 +19,15 @@ export default function NewPost() {
     };
 
     dispatch(addPost(newPost));
+
+    // 👇 agrega una notificación
+    dispatch(
+      addNotification({
+        message: `Nuevo post de ${user?.displayName || user?.email || "Anónimo"}`,
+        createdAt: Date.now(),
+      })
+    );
+
     setContent("");
   };
 
