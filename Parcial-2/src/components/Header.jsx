@@ -25,8 +25,8 @@ export default function Header() {
       }}
     >
       <nav style={{ display: "flex", gap: "20px" }}>
-        <Link to="/">🏠 Posts</Link>
-        <Link to="/notifications">🔔 Notificaciones ({notifCount})</Link>
+        <Link to="/"> Posts</Link>
+        <Link to="/notifications"> Notificaciones ({notifCount})</Link>
         <Link to="/dm-queue">📨 Mensajes ({dmCount})</Link>
       </nav>
 
@@ -34,7 +34,7 @@ export default function Header() {
         {user ? (
           <>
             <span>
-              👤 {user.displayName || user.email}
+              {user.displayName || user.email}
             </span>
             <button onClick={handleLogout}>Cerrar sesión</button>
           </>

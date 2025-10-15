@@ -20,7 +20,7 @@ export default function NewPost() {
 
     dispatch(addPost(newPost));
 
-    // 👇 agrega una notificación
+
     dispatch(
       addNotification({
         message: `Nuevo post de ${user?.displayName || user?.email || "Anónimo"}`,

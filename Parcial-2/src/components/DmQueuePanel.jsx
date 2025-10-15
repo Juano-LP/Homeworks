@@ -9,7 +9,7 @@ export default function DMQueuePanel() {
 
   return (
     <div style={{ maxWidth: 600, margin: "40px auto" }}>
-      <h2>📨 Cola de mensajes directos</h2>
+      <h2>Cola de mensajes directos</h2>
       <NewDM />
       {queue.length === 0 ? (
         <p>No hay mensajes pendientes.</p>

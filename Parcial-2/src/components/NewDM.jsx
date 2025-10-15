@@ -25,7 +25,7 @@ export default function NewDM() {
 
   return (
     <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
-      <h3>✉️ Enviar mensaje directo</h3>
+      <h3>Enviar mensaje directo</h3>
       <input
         value={to}
         onChange={(e) => setTo(e.target.value)}

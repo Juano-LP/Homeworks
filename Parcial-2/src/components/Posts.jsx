@@ -7,7 +7,7 @@ export default function Posts() {
 
   return (
     <div style={{ maxWidth: 600, margin: "40px auto" }}>
-      <h2>📰 Lista de Posts</h2>
+      <h2>Lista de Posts</h2>
       <NewPost />
 
       <div style={{ marginTop: 20 }}>
