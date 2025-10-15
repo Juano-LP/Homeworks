@@ -15,7 +15,8 @@ const firebaseConfig = {
   projectId: "authtenticator-1e594",
   storageBucket: "authtenticator-1e594.firebasestorage.app",
   messagingSenderId: "491428145335",
-  appId: "1:491428145335:web:f21fd20fc21e540a83c532"
+  appId: "1:491428145335:web:f21fd20fc21e540a83c532",
+  databaseURL: "https://authtenticator-1e594-default-rtdb.firebaseio.com"
 };
 
 // Initialize Firebase

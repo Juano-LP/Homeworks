@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchItems, addItem, updateItem, deleteItem } from "./store/slices/FirebaseSlice";
+import { fetchItems, addItem, updateItem, deleteItem } from "./store/slices/FirebaseSlice.js";
 
 export default function Crud() {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function Crud() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>🔥 CRUD Firebase con Redux</h2>
+      <h2> Base de Datos</h2>
       <button onClick={handleAdd}>Agregar</button>
       <ul>
         {data.map((item) => (
@@ -42,6 +42,7 @@ export default function Crud() {
             {item.name}{" "}
             <button onClick={() => handleUpdate(item.id, item.name)}>Editar</button>{" "}
             <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+
           </li>
         ))}
       </ul>

@@ -1,6 +1,6 @@
 // components/ItemList.jsx
 import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, deleteItem, updateItem } from "../store/itemsSlice";
+import { fetchItems, deleteItem, updateItem } from "../store/FirebaseSlice";
 import { useEffect } from "react";
 
 export default function ItemList() {
