@@ -33,7 +33,7 @@ export class BinarySearchTree {
         }
         current = current.right;
       } else {
-        return; // evita duplicados
+        return; 
       }
     }
   }

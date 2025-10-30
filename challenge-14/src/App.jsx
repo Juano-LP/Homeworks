@@ -11,7 +11,6 @@ function App() {
   const [traversalResult, setTraversalResult] = useState("");
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
 
-  // Inicializar árbol
   useEffect(() => {
     const initialTree = new BinarySearchTree();
     [10, 5, 15, 3, 7, 12, 18].forEach((num) => initialTree.insert(num));
@@ -27,7 +26,7 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Insertar nodo
+
   const handleAdd = (e) => {
     e.preventDefault();
     const value = parseInt(inputValue);
@@ -37,7 +36,7 @@ function App() {
     setInputValue("");
   };
 
-  // Recorridos
+
   const handleTraversal = (type) => {
     let result = [];
     switch (type) {
@@ -57,7 +56,6 @@ function App() {
     setTraversalResult(`${type.toUpperCase()}: ${result.join(" → ")}`);
   };
 
-  // Estilos de nodo
   const nodeStyles = {
     circle: {
       fill: "#007bff",
@@ -83,7 +81,7 @@ function App() {
         color: "#212529",
       }}
     >
-      {/* Encabezado */}
+   
       <div
         style={{
           padding: "10px",
@@ -93,7 +91,7 @@ function App() {
         }}
       >
         <h2 style={{ textAlign: "center", color: "#007bff", margin: "5px 0" }}>
-          🌳 Binary Search Tree Visualizer
+          Binary Search Tree Visualizer
         </h2>
 
         <form
@@ -200,7 +198,6 @@ function App() {
         )}
       </div>
 
-      {/* Contenedor del árbol */}
       <div
         id="treeWrapper"
         style={{
