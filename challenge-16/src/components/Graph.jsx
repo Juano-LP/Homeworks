@@ -14,7 +14,7 @@ export class Graph {
     addEdge(node1, node2) {
         if (!this.adjList[node1] || !this.adjList[node2]) return;
         this.adjList[node1].push(node2);
-        this.adjList[node2].push(node1); // Undirected graph
+        this.adjList[node2].push(node1);
     }
 
     searchNode(node) {

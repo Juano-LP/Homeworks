@@ -71,10 +71,10 @@ const GraphManager = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Challenge 16 - Interactive Friends & Cities Graph</h1>
+      <h1>Challenge 16 </h1>
 
       <div style={{ display: "flex", gap: "40px", marginBottom: "30px" }}>
-        {/* Formulario de ciudades */}
+
         <div>
           <h3>Agregar Ciudad</h3>
           <input
@@ -86,7 +86,6 @@ const GraphManager = () => {
           <button onClick={addCity}>Agregar Ciudad</button>
         </div>
 
-        {/* Formulario de personas */}
         <div>
           <h3>Agregar Persona</h3>
           <input
@@ -117,14 +116,14 @@ const GraphManager = () => {
         </div>
       </div>
 
-      {/* Grafo visual */}
+
       {graph.nodes.length > 0 ? (
         <GraphView graph={graph} />
       ) : (
         <p>Agrega ciudades y personas para generar el grafo.</p>
       )}
 
-      {/* Listas de personas por ciudad */}
+
       <div style={{ marginTop: "30px" }}>
         {cities.map(c => (
           <PeopleList key={c.name} city={c.name} people={people} />

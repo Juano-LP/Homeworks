@@ -4,7 +4,7 @@ import GraphManager from "./components/GraphManager";
 const App = () => {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Challenge 16 - Visualizador de Personas y Ciudades</h1>
+      <h1 style={styles.title}>Challenge 16</h1>
 
       <div style={styles.content}>
         <div style={styles.formPanel}>
