@@ -1,0 +1,110 @@
+// src/styles/_chat.scss
+@use './variables' as *;
+
+.chat-container {
+  width: 400px;
+  margin: 30px auto;
+  font-family: $font-stack;
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h2 {
+      margin: 0;
+      color: $text-color;
+    }
+
+    .logout-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken(#dc3545, 10%);
+      }
+    }
+  }
+
+  .messages-box {
+    border: 1px solid #ccc;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+    .message {
+      margin-bottom: 8px;
+
+      small {
+        display: block;
+        font-size: 0.75rem;
+        color: gray;
+      }
+
+      p {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 10px;
+        max-width: 70%;
+      }
+
+      &.own {
+        text-align: right;
+
+        p {
+          background-color: #dcf8c6;
+        }
+      }
+
+      &.other {
+        text-align: left;
+
+        p {
+          background-color: #e5e5ea;
+        }
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    gap: 2%;
+
+    input {
+      width: 75%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+
+    button {
+      width: 23%;
+      background-color: $secondary-color;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+}

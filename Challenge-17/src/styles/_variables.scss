@@ -1,0 +1,24 @@
+// 🎨 Paleta de colores principal
+$primary-color: #4f46e5; // Azul violeta (botones primarios)
+$secondary-color: #22c55e; // Verde (acciones secundarias)
+$accent-color: #f59e0b; // Naranja (resaltados)
+$danger-color: #dc2626; // Rojo (errores)
+$background-color: #f9fafb; // Fondo base
+$text-color: #1f2937; // Texto principal (gris oscuro)
+
+// 🧱 Tipografía
+$font-stack: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+
+// 📏 Dimensiones
+$border-radius: 8px;
+$container-width: 400px;
+
+// 🌙 Sombras y transiciones
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-fast: 0.2s ease;
+$transition-slow: 0.4s ease;
+
+// 🧩 Gradientes opcionales
+$gradient-primary: linear-gradient(135deg, #4f46e5, #9333ea);
+$gradient-accent: linear-gradient(135deg, #f59e0b, #ef4444);
