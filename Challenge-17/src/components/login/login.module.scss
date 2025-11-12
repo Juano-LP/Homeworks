@@ -1,76 +1,148 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
 .login {
-  @include container(350px);
-  background: white;
-  border-radius: $border-radius;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  @include container(400px);
+  background: $surface-color;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  padding: 2.5rem;
+  animation: slideInUp 0.5s ease-out;
 
   h1 {
     text-align: center;
     color: $primary-color;
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    font-weight: 600;
   }
 
   hr {
-    border: 0;
-    border-top: 2px solid $primary-color;
-    width: 50%;
-    margin: 0.5rem auto 1rem auto;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, $border-color, transparent);
+    width: 100%;
+    margin: 1.5rem 0;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 1rem;
+    margin-top: 1.5rem;
 
     input {
-      border: 1px solid #ccc;
+      border: 2px solid $border-color;
       border-radius: $border-radius;
-      padding: 0.6rem;
-      font-size: 1rem;
-      transition: border-color $transition-fast;
+      padding: 0.75rem;
+      font-size: 0.95rem;
+      font-family: $font-stack;
+      color: $text-color;
+      background-color: #fafbfc;
+      transition: all $transition-normal;
+
+      &::placeholder {
+        color: $text-muted;
+      }
 
       &:focus {
         outline: none;
         border-color: $primary-color;
+        background-color: white;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      &:hover:not(:focus) {
+        border-color: #cbd5e1;
       }
     }
 
     button {
-      @include button-base($secondary-color);
+      @include button-base($secondary-color, $surface-color, 0.875rem 1.5rem, $border-radius);
       font-size: 1rem;
-      padding: 0.6rem 0;
-      width: 100%;
-      margin-top: 10px;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      transition: all $transition-normal;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
     }
   }
 
   .googleBtn {
-    @include button-base($accent-color);
-    margin-top: 10px;
+    @include button-base($accent-color, $surface-color, 0.875rem 1.5rem, $border-radius);
+    margin-top: 1rem;
     width: 100%;
-    font-weight: 500;
+    font-weight: 600;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
   }
 
   p {
     text-align: center;
-    margin-top: 1rem;
-    color: $text-color;
+    margin-top: 1.5rem;
+    color: $text-secondary;
     font-size: 0.95rem;
 
     a {
-      color: $accent-color;
-      text-decoration: underline;
+      color: $primary-color;
+      text-decoration: none;
       font-weight: 600;
-      transition: color $transition-fast;
+      transition: all $transition-fast;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $primary-color;
+        transition: width $transition-normal;
+      }
 
       &:hover {
-        color: darken($accent-color, 10%);
+        color: darken($primary-color, 10%);
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
@@ -78,23 +150,62 @@
   // Estilo para cuando ya está autenticado
   .welcome {
     text-align: center;
+    animation: fadeIn 0.6s ease-out;
 
     h1 {
       color: $primary-color;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      animation: slideInUp 0.5s ease-out;
+
+      /* Emoji animado */
+      display: inline-block;
+      
+      &::after {
+        content: '👋';
+        display: inline-block;
+        margin-left: 0.5rem;
+        animation: bounce 1s ease-in-out infinite;
+      }
     }
 
     button {
       @include button-base();
-      margin: 10px;
-      padding: 10px 20px;
+      margin: 0.75rem;
+      padding: 0.875rem 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      transition: all $transition-normal;
+      width: calc(100% - 1.5rem);
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
     }
 
     .chatBtn {
-      background-color: $primary-color;
+      background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+      color: white;
+      
+      &:hover {
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      }
     }
 
     .logoutBtn {
-      background-color: $danger-color;
+      background: linear-gradient(135deg, $danger-color 0%, darken($danger-color, 10%) 100%);
+      color: white;
+      
+      &:hover {
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+      }
     }
   }
 }
