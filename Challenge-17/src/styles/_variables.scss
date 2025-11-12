@@ -1,24 +1,41 @@
 // 🎨 Paleta de colores principal
-$primary-color: #4f46e5; // Azul violeta (botones primarios)
-$secondary-color: #22c55e; // Verde (acciones secundarias)
+$primary-color: #3b82f6; // Azul (botones primarios)
+$secondary-color: #10b981; // Verde esmeralda (acciones secundarias)
 $accent-color: #f59e0b; // Naranja (resaltados)
-$danger-color: #dc2626; // Rojo (errores)
-$background-color: #f9fafb; // Fondo base
-$text-color: #1f2937; // Texto principal (gris oscuro)
+$danger-color: #ef4444; // Rojo (errores y logout)
+$success-color: #10b981; // Verde (éxito)
+$warning-color: #f59e0b; // Naranja (advertencias)
+
+// 📱 Colores de interfaz
+$background-color: #f8fafc; // Fondo base muy claro
+$surface-color: #ffffff; // Superficies (tarjetas, modales)
+$border-color: #e2e8f0; // Bordes sutiles
+$text-color: #0f172a; // Texto principal (azul muy oscuro)
+$text-secondary: #64748b; // Texto secundario (gris)
+$text-muted: #94a3b8; // Texto deshabilitado
+
+// 💬 Colores de chat
+$message-own-bg: #dbeafe; // Azul muy claro para propios mensajes
+$message-own-text: #1e40af; // Azul oscuro para propios mensajes
+$message-other-bg: #f1f5f9; // Gris claro para otros mensajes
+$message-other-text: #0f172a; // Gris oscuro para otros mensajes
 
 // 🧱 Tipografía
 $font-stack: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
 
 // 📏 Dimensiones
 $border-radius: 8px;
+$border-radius-lg: 12px;
 $container-width: 400px;
 
 // 🌙 Sombras y transiciones
 $shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
 $shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 $transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
 $transition-slow: 0.4s ease;
 
 // 🧩 Gradientes opcionales
-$gradient-primary: linear-gradient(135deg, #4f46e5, #9333ea);
+$gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
 $gradient-accent: linear-gradient(135deg, #f59e0b, #ef4444);

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { listenMessages, sendMessage } from "../store/Thunks/chatThunk";
-import { logoutAuth } from "../store/thunks/logoutAuth";
-import "../styles/_chat.scss";
+import { listenMessages, sendMessage } from "../../store/Thunks/chatThunk";
+import { logoutAuth } from "../../store/Thunks/logoutAuth";
+import styles from "./chat.module.scss";
 
 export const Chat = () => {
   const dispatch = useDispatch();
@@ -36,20 +36,20 @@ export const Chat = () => {
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-header">
+    <div className={styles.chatContainer}>
+      <div className={styles.header}>
         <h2>💬 Chat Realtime</h2>
-        <button className="logout-btn" onClick={handleLogout}>
+        <button onClick={handleLogout}>
           Cerrar sesión
         </button>
       </div>
 
-      <div className="messages-box">
+      <div className={styles.messages}>
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`message ${
-              msg.user === (displayName || email) ? "own" : "other"
+            className={`${styles.message} ${
+              msg.user === (displayName || email) ? styles.own : styles.other
             }`}
           >
             <small>{msg.user}</small>
@@ -59,7 +59,7 @@ export const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSend}>
+      <form className={styles.form} onSubmit={handleSend}>
         <input
           type="text"
           placeholder="Escribe un mensaje..."

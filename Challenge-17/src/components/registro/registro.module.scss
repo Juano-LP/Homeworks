@@ -1,0 +1,50 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.registro {
+  @include container(350px);
+
+  h1 {
+    text-align: center;
+    color: $primary-color;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: $border-radius;
+      padding: 0.5rem;
+      transition: border-color $transition-fast;
+
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+
+    button {
+      @include button-base($secondary-color);
+      margin-top: 10px;
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-top: 1rem;
+    color: $text-color;
+
+    a {
+      color: $accent-color;
+      text-decoration: underline;
+      font-weight: 500;
+
+      &:hover {
+        color: darken($accent-color, 10%);
+      }
+    }
+  }
+}

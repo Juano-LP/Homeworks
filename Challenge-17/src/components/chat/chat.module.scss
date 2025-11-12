@@ -1,0 +1,84 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.chatContainer {
+  @include container();
+  background: white;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    @include flex-center(space-between);
+    margin-bottom: 10px;
+
+    h2 {
+      color: $primary-color;
+    }
+
+    button {
+      @include button-base($danger-color);
+    }
+  }
+
+  .messages {
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #fafafa;
+    padding: 10px;
+
+    .message {
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      background-color: white;
+
+      small {
+        display: block;
+        font-weight: bold;
+        color: #666;
+        margin-bottom: 4px;
+      }
+
+      p {
+        margin: 0;
+        word-wrap: break-word;
+      }
+
+      &.own {
+        background-color: #e3f2fd;
+        margin-left: 20px;
+        text-align: right;
+
+        small {
+          color: #1976d2;
+        }
+      }
+
+      &.other {
+        background-color: #f5f5f5;
+        margin-right: 20px;
+
+        small {
+          color: #555;
+        }
+      }
+    }
+  }
+
+  .form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+    input {
+      flex: 1;
+    }
+
+    button {
+      @include button-base();
+    }
+  }
+}
+

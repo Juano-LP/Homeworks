@@ -3,9 +3,9 @@ import "./styles/main.scss";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Registro } from "./components/Registro.jsx";
-import { Login } from "./components/Login.jsx";
-import { Chat } from "./components/chat.jsx";
+import { Registro } from "./components/registro/registro.jsx";
+import { Login } from "./components/login/login.jsx";
+import { Chat } from "./components/chat/chat.jsx";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
