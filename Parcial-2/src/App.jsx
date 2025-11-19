@@ -25,7 +25,7 @@ export default function App() {
   const { stack: notifications } = useSelector((s) => s.notifications);
   const { queue: dmQueue } = useSelector((s) => s.dmQueue);
 
-  // 🔹 Guardar el estado global en Firestore
+  
   const saveSnapshot = async (uid, snapshot) => {
     if (!uid) return;
     try {
