@@ -1,0 +1,187 @@
+// Basic dark theme and improved layout using Sass (tuned palette)
+$bg: #0f1213;
+$card: #0f1720;
+$muted: #9fb0bd;
+$accent: #5fd0a9;
+$accent-2: #2b8aef;
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  background: linear-gradient(180deg, $bg 0%, darken($bg,6%) 100%);
+  color: #e9f0f4;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  padding: 0;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  padding: 20px;
+  border-right: 1px solid rgba(255,255,255,0.04);
+}
+
+.panel {
+  background: rgba(255,255,255,0.02);
+}
+
+.cities-list { list-style:none; padding: 0; margin-top: 12px; }
+.cities-list li { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+.city-btn { flex:1; text-align:left; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); padding:10px 12px; border-radius:6px; color:#e9f0f4; }
+.city-btn:hover { background: rgba(255,255,255,0.04); }
+.trash-btn { background: transparent; border: 1px solid rgba(255,255,255,0.04); padding:8px; border-radius:6px; color: #ff7b7b; }
+
+.main-area { flex:1; display:flex; flex-direction:column; padding:18px; gap:12px; }
+.top-graph { height: 320px; }
+.svg-card { background: #fff; border-radius:8px; padding:10px; }
+
+.content-split { display:flex; gap:12px; flex:1; }
+.left { flex:1; }
+.right { width:360px; }
+
+.controls input, .controls select { padding:8px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); color: #e9f0f4; }
+.controls button { padding:8px 12px; border-radius:8px; border:none; background: linear-gradient(180deg, $accent 0%, darken($accent,6%) 100%); color:#062022; cursor:pointer; }
+.controls button.secondary { background: rgba(255,255,255,0.06); color:#e9f0f4; }
+
+/* General UI controls (non-graph/tree). These avoid touching .svg-card, .graph-card, .tree-card */
+.app-controls button, .app-controls .btn, .controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, $accent-2 0%, darken($accent-2,6%) 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .12s ease, opacity .08s ease;
+}
+
+.app-controls button.secondary, .controls button.secondary {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  color: #e6eef3;
+}
+
+.app-controls button:hover, .controls button:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+.app-controls button:active, .controls button:active { transform: translateY(0); }
+.app-controls button:disabled, .controls button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Inputs & selects (non-SVG areas) */
+.app-controls input, .app-controls select, .controls input, .controls select {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.app-controls input:focus, .controls input:focus, .app-controls select:focus, .controls select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(43,138,239,0.12);
+  border-color: rgba(43,138,239,0.9);
+}
+
+/* City list buttons */
+.city-btn { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.04); }
+.city-btn:hover { background: rgba(255,255,255,0.04); }
+.trash-btn { background: transparent; border: 1px solid rgba(255,255,255,0.04); color: #ffb4b4; }
+.trash-btn:hover { background: rgba(255,30,30,0.06); }
+
+/* Headings and small labels in panels */
+.panel h3, .panel h4 { margin: 0 0 8px 0; color: #e6eef3; font-weight:700; }
+.panel .muted { color: rgba(230,238,243,0.6); }
+
+.stats { padding:18px 0 40px 0; text-align:center; color:$muted; }
+
+/* Add Root Zone area styles (moved from inline in GreenZoneTree.jsx) */
+.root-zone-add {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.root-zone-add .root-zone-input {
+  flex: 1;
+  padding: 12px 14px;
+  height: 48px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color: #e9f0f4;
+}
+.root-zone-add .root-zone-btn {
+  padding: 12px 16px;
+  height: 48px;
+  border-radius: 8px;
+  font-size: 14px;
+  background: linear-gradient(180deg, $accent 0%, darken($accent,6%) 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #062022;
+  cursor: pointer;
+}
+
+
+/* improve SVG appearance */
+svg { display:block; width:100%; height:100%; }
+svg line { stroke-linecap: round; }
+svg text { font-weight:600; }
+
+/* small responsive adjustments */
+@media (max-width: 900px) {
+  .sidebar { display:none; }
+  .right { display:none; }
+}
+
+/* Make form controls larger and give better spacing for left column */
+.app-layout input, .app-layout select, .app-layout textarea {
+  padding: 10px 12px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.app-layout button {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.app-layout .panel { padding: 10px; }
+
+/* ensure svg cards expand */
+.svg-card, .graph-card, .tree-card { min-height: 160px; }
+
+/* Dark svg card for graph/tree backgrounds */
+.svg-card-dark {
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #0b0f12 0%, #0f1416 100%);
+  touch-action: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.svg-card-dark line { stroke: #fff; stroke-linecap: round; }
+.svg-card-dark text { fill: #fff; }
+.svg-card-dark circle { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
+
+/* Graph/Tree card containers (dark) */
+.graph-card, .tree-card {
+  background: linear-gradient(180deg, #0b0f12 0%, #0f1416 100%);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+}
+
+.graph-card .svg-wrapper, .tree-card .svg-wrapper { height: 100%; }
+
+/* Card text colors */
+.graph-card h4, .tree-card h4, .graph-card h3, .tree-card h3 { color: #e6eef3; }
+.graph-card, .tree-card { color: rgba(230,238,243,0.95); }
+
+
