@@ -36,6 +36,8 @@ function deserializeCities(data) {
 }
 
 function App() {
+  const [connectTarget, setConnectTarget] = useState('');
+  const [open, setOpen] = useState(false);
   const [cities, setCities] = useState(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -129,19 +131,33 @@ function App() {
             <h4 style={{margin:0, marginBottom:8}}>Connections & Stats</h4>
             {selectedCity ? (
               <div style={{marginTop:8}}>
-                <div style={{marginBottom:8}}><strong>Neighbors:</strong> {(adj[selectedCity.name] || []).join(', ') || '—'}</div>
-                <div style={{display:'flex', gap:8, alignItems:'center'}}>
-                  <select id="connectToLeft" style={{flex:1}}>
-                    <option value="">Select city...</option>
-                    {cities.filter(c => c.name !== selectedCity.name && !(adj[selectedCity.name]||[]).includes(c.name)).map(c => (
-                      <option key={c.name} value={c.name}>{c.name}</option>
+                <div style={{marginBottom:8}}>
+                  <strong>Neighbors:</strong>
+                  <div style={{display:'inline-flex', gap:8, marginLeft:10, verticalAlign:'middle'}}>
+                    {(adj[selectedCity.name] || []).length === 0 ? '—' : (adj[selectedCity.name] || []).map(n => (
+                      <span key={n} className="chip">{n}</span>
                     ))}
-                  </select>
-                  <button onClick={() => {
-                    const sel = document.getElementById('connectToLeft');
-                    const val = sel?.value;
-                    if (!val) return alert('Choose a city to connect');
-                    addEdge(selectedCity.name, val);
+                  </div>
+                </div>
+
+                <div className="connect-row">
+                  <div className="connect-custom" tabIndex={0} onBlur={() => setTimeout(()=>setOpen(false), 150)}>
+                    <div className="connect-display" onClick={() => setOpen(o => !o)}>
+                      {connectTarget || 'Select city to connect...'}
+                      <span className="connect-caret">▾</span>
+                    </div>
+                    {open && (
+                      <div className="connect-dropdown">
+                        {cities.filter(c => c.name !== selectedCity.name && !(adj[selectedCity.name]||[]).includes(c.name)).map(c => (
+                          <div key={c.name} className="connect-option" onClick={() => { setConnectTarget(c.name); setOpen(false); }}>{c.name}</div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <button className="connect-btn" onClick={() => {
+                    if (!connectTarget) return alert('Choose a city to connect');
+                    addEdge(selectedCity.name, connectTarget);
+                    setConnectTarget('');
                   }}>Connect</button>
                 </div>
 
